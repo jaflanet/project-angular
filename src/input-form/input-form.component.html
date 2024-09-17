@@ -1,0 +1,104 @@
+<form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" />
+    <label
+      class="validation-error"
+      *ngIf="
+      addUserForm.get('name')?.errors?.['required'] &&
+      addUserForm.get('name')?.touched
+    "
+    >
+      required cannot be empty
+    </label>
+    <label
+      class="validation-error"
+      *ngIf="
+    addUserForm.get('name')?.errors?.['minlength'] &&
+    addUserForm.get('name')?.touched
+  "
+    >
+      must more than 3
+    </label>
+  </div>
+
+  <label
+    class="validation-error"
+    *ngIf="
+    addUserForm.get('phoneNumber')?.errors?.['required'] &&
+    addUserForm.get('phoneNumber')?.touched
+  "
+  >
+    name required cannot be empty
+  </label>
+
+  <div>
+    <label for="email">email :</label>
+    <input id="email" formControlName="email" />
+    <label
+      class="validation-error"
+      *ngIf="
+  addUserForm.get('email')?.errors?.['required'] &&
+  addUserForm.get('email')?.touched
+"
+    >
+      email required cannot be empty
+    </label>
+    <label
+      class="validation-error"
+      *ngIf="
+addUserForm.get('email')?.errors?.['email'] &&
+addUserForm.get('email')?.touched
+"
+    >
+      email not valid
+    </label>
+  </div>
+
+  <div formGroupName="address">
+    <div>
+      <label for="zipcode">Zipcode:</label>
+      <input id="zipcode" formControlName="zipcode" />
+      <label
+        class="validation-error"
+        *ngIf="
+  addUserForm.get('address')?.get('zipcode')?.errors?.['required'] &&
+  addUserForm.get('address')?.get('zipcode')?.touched
+"
+      >
+        zipcode required cannot be empty
+      </label>
+    </div>
+
+    <div>
+      <label for="province">Province:</label>
+      <input id="province" formControlName="province" />
+      <label
+        class="validation-error"
+        *ngIf="
+addUserForm.get('address')?.get('province')?.errors?.['required'] &&
+addUserForm.get('address')?.get('province')?.touched
+"
+      >
+        province required cannot be empty
+      </label>
+    </div>
+
+    <div>
+      <label for="city">City:</label>
+      <input id="city" formControlName="city" /><label
+        class="validation-error"
+        *ngIf="
+addUserForm.get('address')?.get('city')?.errors?.['required'] &&
+addUserForm.get('address')?.get('city')?.touched
+"
+      >
+        province required cannot be empty
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
+  </div>
+</form>

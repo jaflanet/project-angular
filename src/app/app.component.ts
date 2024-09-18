@@ -2,8 +2,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataUser } from './app.entity';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../button/button.component';
-import { GenerateRandomIdService } from '../generate-random-id.service';
+import { ButtonComponent } from './button/button.component';
+import { GenerateRandomIdService } from '../services/generate-random-id/generate-random-id.service';
 import {
   FormControl,
   FormGroup,
@@ -11,8 +11,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ReversePipe } from './reverse.pipe';
-import { UserdataService } from './userdata.service';
+import { ReversePipe } from '../pipe/reversePipe/reverse.pipe';
+import { UserdataService } from '../services/userdata/userdata.service';
 
 @Component({
   selector: 'app-root',

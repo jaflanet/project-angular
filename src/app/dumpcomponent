@@ -1,0 +1,68 @@
+<div class="container">
+  <h2 class="title" [style]="{ color: backgroundColor }">{{ title }}</h2>
+  <p class="desc">
+    {{ dataUser.name }}
+    {{ dataUser.address[0].province }}
+  </p>
+  <div class="address" *ngFor="let address of dataUser.address">
+    {{ address.city }}
+  </div>
+  <div>
+    <app-button
+      [buttonLabel]="lableButton1"
+      [dataForChild]="dataUser"
+      (submitButton)="eventFromParent($event)"
+    />
+    <!-- <app-button [buttonLabel]="lableButton2" /> -->
+  </div>
+  {{ randomId }}
+  <br />
+  <input placeholder="enter your name" [(ngModel)]="name" />
+  <h2>nama kamu : {{ name }}</h2>
+  <button (click)="updateName('john doe')">set name to john doe</button>
+
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <label for="name">input name</label>
+    <input id="name" formControlName="name" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('name')?.invalid && addUserForm.get('name')?.touched
+      "
+    >
+      please input name
+    </div>
+
+    <label for="phoneNumber">input number</label>
+    <input id="phoneNumber" formControlName="phoneNumber" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('phoneNumber')?.errors?.['required'] &&
+        addUserForm.get('phoneNumber')?.touched
+      "
+    >
+      input phone number
+    </div>
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('phoneNumber')?.errors?.['minlength'] &&
+        addUserForm.get('phoneNumber')?.touched
+      "
+    >
+      must be more than 9 digit
+    </div>
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('phoneNumber')?.errors?.['maxlength'] &&
+        addUserForm.get('phoneNumber')?.touched
+      "
+    >
+      must be less than 13 digit
+    </div>
+
+    <button type="submit" [disabled]="addUserForm.invalid">submit</button>
+  </form>
+</div>

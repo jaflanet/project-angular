@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataUser } from '../app/app.entity';
+import { DataUser } from '../app.entity';
 import { CommonModule } from '@angular/common';
 
 @Component({

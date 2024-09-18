@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { DataUser } from '../app/app.entity';
+import { DataUser } from '../app.entity';
 import {
   FormControl,
   FormGroup,
@@ -36,7 +36,6 @@ export class InputFormComponent {
     if (this.addUserForm.valid) {
       const formData: DataUser = this.addUserForm.value;
       this.userDataSubmit.emit(formData);
-      console.log(formData);
     } else {
     }
   }

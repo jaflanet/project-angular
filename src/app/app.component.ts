@@ -11,8 +11,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputFormComponent } from '../input-form/input-form.component';
-import { OutputTableComponent } from '../output-table/output-table.component';
+import { InputFormComponent } from './input-form/input-form.component';
+import { OutputTableComponent } from './output-table/output-table.component';
+import { UserdataService } from '../service/userdata/userdata.service';
 
 @Component({
   selector: 'app-root',
@@ -33,32 +34,14 @@ export class AppComponent implements OnInit {
   dataUser: DataUser[] = [];
   addUserForm!: FormGroup;
 
+  constructor(private userDataService: UserdataService) {}
+
   ngOnInit(): void {
-    this.dataUser = [
-      {
-        name: 'jona',
-        email: 'jona321@gmail.com',
-        address: {
-          zipcode: 1,
-          province: 'jakarta',
-          city: 'jakarta barat',
-        },
-      },
-      {
-        name: 'jona2',
-        email: 'jona123@gmail.com',
-        address: {
-          zipcode: 2,
-          province: 'jakarta',
-          city: 'jakarta timur',
-        },
-      },
-    ];
+    const userData = this.userDataService.getUser();
+    this.dataUser = userData;
   }
 
   addUser(userData: DataUser) {
-    console.log('before', userData);
-    this.dataUser.push(userData);
-    console.log('after', this.dataUser);
+    this.userDataService.addUser(userData);
   }
 }

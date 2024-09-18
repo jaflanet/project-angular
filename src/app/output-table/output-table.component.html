@@ -3,18 +3,43 @@
     <tr>
       <th>Name</th>
       <th>Email</th>
-      <th>Addres</th>
+      <th>Address</th>
+      <th>Payment Date</th>
+      <th>Action</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of dataUser">
+    <tr
+      *ngFor="let user of dataUser"
+      [ngClass]="{
+        strikethrough: user.status,
+        highlight: isNearDeadline(user.payment)
+      }"
+    >
       <td>{{ user.name }}</td>
       <td>{{ user.email }}</td>
       <td>
-        {{ user.address.province }},{{ user.address.city }},{{
-          user.address.zipcode
-        }}
+        {{ user.address.province }}, {{ user.address.city }},
+        {{ user.address.zipcode }}
       </td>
+      <td>{{ user.payment | date }}</td>
+      <td>
+        <button (click)="deleteUser(user.email)">
+          <img src="https://img.icons8.com/?size=48&id=7837&format=png" />
+        </button>
+      </td>
+      <td>
+        <input
+          type="checkbox"
+          [(ngModel)]="user.status"
+          (change)="toggleStrikeThrough(user)"
+        />
+      </td>
+    </tr>
+
+    <tr *ngIf="dataUser.length === 0">
+      <td colspan="6" class="no-data">No data available</td>
     </tr>
   </tbody>
 </table>

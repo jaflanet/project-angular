@@ -55,6 +55,20 @@ addUserForm.get('email')?.touched
     </label>
   </div>
 
+  <div>
+    <label for="payment">payment date :</label>
+    <input id="payment" formControlName="payment" type="date" />
+    <label
+      class="validation-error"
+      *ngIf="
+  addUserForm.get('payment')?.errors?.['required'] &&
+  addUserForm.get('payment')?.touched
+"
+    >
+      date required cannot be empty
+    </label>
+  </div>
+
   <div formGroupName="address">
     <div>
       <label for="zipcode">Zipcode:</label>

@@ -29,6 +29,8 @@ export class InputFormComponent {
         province: new FormControl('', Validators.required),
         city: new FormControl('', Validators.required),
       }),
+      payment: new FormControl(new Date(), [Validators.required]),
+      status: new FormControl(false),
     });
   }
 

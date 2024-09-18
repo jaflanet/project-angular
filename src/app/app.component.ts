@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { DataUser } from './app.entity';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   FormControl,
@@ -43,5 +44,13 @@ export class AppComponent implements OnInit {
 
   addUser(userData: DataUser) {
     this.userDataService.addUser(userData);
+  }
+
+  deleteUser(email: string) {
+    this.userDataService.deleteUser(email);
+  }
+
+  toggleStrikeThrough(user: any) {
+    this.userDataService.toggleStrikeThrough(user);
   }
 }

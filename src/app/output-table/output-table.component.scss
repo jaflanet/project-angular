@@ -8,6 +8,16 @@ $header-font-size: 1.125rem;
 $text-color: #333;
 $tbody-bg: #f9f9f9;
 
+.highlight {
+  background-color: red !important;
+  color: white;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+}
+
 table {
   width: 60%;
   border-collapse: collapse;
@@ -35,7 +45,6 @@ table {
       td {
         padding: 0.75rem;
         border-right: 1px solid $border-color;
-        background-color: $tbody-bg;
 
         &:last-child {
           border-right: none;
@@ -43,4 +52,19 @@ table {
       }
     }
   }
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+button {
+  margin: 20px;
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  padding: 20px;
 }

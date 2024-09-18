@@ -17,4 +17,15 @@ export class UserdataService {
   addUser(data: DataUser) {
     this.userData.push(data);
   }
+
+  deleteUser(email: string) {
+    const index = this.userData.findIndex((user) => user.email === email);
+    if (index !== -1) {
+      this.userData.splice(index, 1);
+    }
+  }
+
+  toggleStrikeThrough(user: any) {
+    user.checked = !user.checked;
+  }
 }

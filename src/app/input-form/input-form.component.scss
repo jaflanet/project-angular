@@ -1,16 +1,21 @@
-$form-bg: #dba858;
-$input-border: #ccc;
+$form-bg: #f7f6f6;
+$input-border: #56ddd2;
 $input-focus-border: #007bff;
 $validation-error-color: #8c0e0f;
 $label-font-size: 0.875rem;
 
+.header {
+  text-align: center;
+  margin-bottom: 15px;
+}
 form {
   background-color: $form-bg;
   border-radius: 8px;
   padding: 1.5rem;
   max-width: 600px;
   margin: 2rem auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: $input-border;
+  border: 2px solid $input-border;
 
   div {
     margin-bottom: 1rem;

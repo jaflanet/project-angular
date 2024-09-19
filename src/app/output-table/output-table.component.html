@@ -1,8 +1,15 @@
+<h1>Tabel User</h1>
+<div>
+  <button (click)="goToForm()" class="button-add">Add User</button>
+</div>
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Email</th>
+      <th>username</th>
+      <th>salary</th>
       <th>Address</th>
       <th>Payment Date</th>
       <th>Action</th>
@@ -13,32 +20,39 @@
     <tr
       *ngFor="let user of dataUser"
       [ngClass]="{
-        strikethrough: user.status,
-        highlight: isNearDeadline(user.payment)
+        strikethrough: user.isChecked,
+       
       }"
     >
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>
-        {{ user.address.province }}, {{ user.address.city }},
-        {{ user.address.zipcode }}
+      <td (click)="goToCreateForm(user.id)">{{ user.id }}</td>
+      <td (click)="goToCreateForm(user.id)">{{ user.name }}</td>
+      <td (click)="goToCreateForm(user.id)">{{ user.email }}</td>
+      <td (click)="goToCreateForm(user.id)">{{ user.username }}</td>
+      <td (click)="goToCreateForm(user.id)">{{ user.basicSalary }}</td>
+      <td (click)="goToCreateForm(user.id)">
+        {{ user.province }}, {{ user.city }},
+        {{ user.zipcode }}
       </td>
-      <td>{{ user.payment | date }}</td>
+      <td>{{ user.paymentDeadline | date }}</td>
       <td>
-        <button (click)="deleteUser(user.email)">
+        <button (click)="deleteUser(user.id)" class="button-delete">
           <img src="https://img.icons8.com/?size=48&id=7837&format=png" />
         </button>
       </td>
       <td>
         <input
           type="checkbox"
-          [(ngModel)]="user.status"
+          [(ngModel)]="user.isChecked"
           (change)="toggleStrikeThrough(user)"
         />
       </td>
     </tr>
 
-    <tr *ngIf="dataUser.length === 0">
+    <tr *ngIf="isLoading" class="fullrow">
+      <td colspan="6" class="no-data">loading</td>
+    </tr>
+
+    <tr *ngIf="dataUser.length === 0 && !isLoading" class="fullrow">
       <td colspan="6" class="no-data">No data available</td>
     </tr>
   </tbody>

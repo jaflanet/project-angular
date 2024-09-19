@@ -1,5 +1,5 @@
 $table-bg: #ffffff;
-$thead-bg: #dba858;
+$thead-bg: #56ddd2;
 $thead-border: #ddd;
 $tbody-border: #eee;
 $border-color: #ddd;
@@ -16,6 +16,18 @@ $tbody-bg: #f9f9f9;
 img {
   width: 20px;
   height: 20px;
+}
+
+h1 {
+  color: #ffffff;
+  text-align: center;
+  padding-top: 30px;
+}
+
+div {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 table {
@@ -41,6 +53,7 @@ table {
     tr {
       border-bottom: 1px solid $tbody-border;
       background-color: $tbody-bg;
+      width: 100%;
 
       td {
         padding: 0.75rem;
@@ -50,6 +63,9 @@ table {
           border-right: none;
         }
       }
+      &:hover {
+        background-color: darken($tbody-bg, 10%);
+      }
     }
   }
 }
@@ -58,13 +74,47 @@ table {
   text-decoration: line-through;
 }
 
-button {
-  margin: 20px;
-}
-
 .no-data {
   text-align: center;
   color: #888;
   font-style: italic;
   padding: 20px;
+}
+
+.button-add {
+  appearance: button;
+  display: block;
+  background-color: $thead-bg;
+  border-radius: 6px;
+  border-width: 0;
+  text-decoration: solid;
+  cursor: pointer;
+  height: 44px;
+  line-height: 1.15;
+  outline: none;
+  padding: 0 25px;
+  margin-top: 20px;
+  text-align: center;
+  text-transform: none;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.button-add:hover {
+  background-color: darken($thead-bg, 10%);
+  transform: scale(1.05);
+}
+
+.button-delete {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.button-delete:hover {
+  transform: scale(1.2);
+}
+
+.fullrow {
+  width: 100%;
 }

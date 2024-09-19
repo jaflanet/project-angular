@@ -1,13 +1,12 @@
-export interface Address {
-  zipcode: number;
-  province: string;
-  city: string;
-}
-
 export interface DataUser {
+  paymentDeadline: Date;
+  username: string;
   name: string;
   email: string;
-  payment: Date;
-  address: Address;
-  status?: boolean;
+  city: string;
+  province: string;
+  basicSalary: number;
+  zipcode: string;
+  isChecked: boolean;
+  id?: string;
 }

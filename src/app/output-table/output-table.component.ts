@@ -3,7 +3,8 @@ import { DataUser } from '../app.entity';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SnackBarService } from '../../service/snackbar/snackbar.service';
-
+import { HttpRequestService } from '../../service/http-service/http-response.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-output-table',
   standalone: true,
@@ -12,31 +13,53 @@ import { SnackBarService } from '../../service/snackbar/snackbar.service';
   styleUrl: './output-table.component.scss',
 })
 export class OutputTableComponent implements OnInit {
-  @Input() dataUser!: DataUser[];
-  @Output() userDeleted = new EventEmitter<string>();
+  dataUser: DataUser[] = [];
   @Output() userChecked = new EventEmitter<any>();
-  today: Date = new Date();
+  isLoading = false;
 
-  constructor(private snackBarService: SnackBarService) {}
+  constructor(
+    private snackBarService: SnackBarService,
+    private httpRequestService: HttpRequestService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchDataUser();
+  }
 
-  deleteUser(email: string) {
-    this.userDeleted.emit(email);
-    this.snackBarService.openSnackBar('User is successfully deleted', 'Close');
+  fetchDataUser() {
+    this.isLoading = true;
+    this.httpRequestService.getData().subscribe(
+      (res: any) => {
+        this.dataUser = res;
+        this.isLoading = false;
+      },
+      (err) => {
+        this.isLoading = false;
+        console.log(err);
+      }
+    );
+  }
+
+  deleteUser(id: any) {
+    this.httpRequestService.deleteUser(id).subscribe((res: any) => {
+      console.log('success delete user', res);
+      this.fetchDataUser();
+      this.snackBarService.openSnackBar(
+        'User is successfully deleted',
+        'Close'
+      );
+    });
   }
 
   toggleStrikeThrough(user: any) {
     this.userChecked.emit(user);
   }
 
-  isNearDeadline(paymentDate: Date): boolean {
-    const deadline = new Date(paymentDate);
-    const diff = deadline.getDate() - this.today.getDate();
-    if (diff <= 3) {
-      return true;
-    } else {
-      return false;
-    }
+  goToForm() {
+    this.router.navigate([`/add`]);
+  }
+  goToCreateForm(id: any) {
+    this.router.navigate([`/edit/${id}`]);
   }
 }

@@ -13,6 +13,8 @@ import {
 } from '@angular/forms';
 import { ReversePipe } from '../pipe/reversePipe/reverse.pipe';
 import { UserdataService } from '../services/userdata/userdata.service';
+import { HttpClient } from '@angular/common/http';
+import { HttpRequestService } from '../services/http-service/http-request.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +32,7 @@ import { UserdataService } from '../services/userdata/userdata.service';
 })
 export class AppComponent implements OnInit {
   title: String = 'project-1';
-  dataUser!: DataUser;
+  dataUser!: DataUser[];
   lableButton1: String = 'label1';
   lableButton2: String = 'label2';
   backgroundColor: String = '';
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit {
   addUserForm!: FormGroup;
   isShown: Boolean = true;
   today = new Date();
+  isLoading = false;
 
   get nameForm() {
     return this.addUserForm.get('name');
@@ -50,7 +53,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private randomIdService: GenerateRandomIdService,
-    private userDataService: UserdataService
+    // private userDataService: UserdataService,
+    private httpRequestService: HttpRequestService
   ) {
     this.randomId = this.randomIdService.generateId();
 
@@ -73,8 +77,42 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.title = 'test angular';
-    const userData = this.userDataService.getUsers();
-    this.dataUser = userData;
+    // const userData = this.userDataService.getUsers();
+    // this.dataUser = userData;
+    this.fetchDataUser();
+  }
+
+  createUser() {
+    const payload = {
+      paymentDeadline: new Date(),
+      username: 'Marc13',
+      name: 'Carley',
+      email: 'Abagail_Johnston@hotmail.com',
+      basicSalary: '953134188',
+      city: 'Port Adrien',
+      province: 'Portugal',
+      zipcode: 'GN',
+      isChecked: true,
+      age: 20,
+    }
+    this.httpRequestService.createUser(payload).subscribe((res: any) => {
+      console.log('success create user', res);
+    });
+  }
+
+  fetchDataUser() {
+    this.isLoading = true;
+    this.httpRequestService.getData().subscribe(
+      (res: any) => {
+        this.dataUser = res;
+        console.log(this.dataUser);
+        this.isLoading = false;
+      },
+      (err) => {
+        this.isLoading = false;
+        console.log(err);
+      }
+    );
   }
 
   eventFromParent(event: any) {

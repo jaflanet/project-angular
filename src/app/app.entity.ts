@@ -1,13 +1,18 @@
-export interface Address {
-  zone?: number;
-  zipcode?: number;
-  province: string;
-  city: string;
-  district: string;
-}
+// export interface DataUserResp {
+//   status: number;
+//   data: DataUser[];
+// }
 
 export interface DataUser {
+  paymentDeadline: Date;
+  username: string;
   name: string;
   age: number;
-  address: Array<Address>;
+  email: string;
+  basicSalary: string;
+  city: string;
+  province: string;
+  zipcode: string;
+  isChecked: boolean;
+  id?: string;
 }

@@ -21,6 +21,7 @@
       *ngFor="let user of dataUser"
       [ngClass]="{
         strikethrough: user.isChecked,
+        highlight: isNearDeadline(user.paymentDeadline)
       }"
     >
       <td (click)="goToCreateForm(user.id)">{{ user.id }}</td>

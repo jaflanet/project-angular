@@ -16,6 +16,7 @@ export class OutputTableComponent implements OnInit {
   dataUser: DataUser[] = [];
   @Output() userChecked = new EventEmitter<any>();
   isLoading = false;
+  today: Date = new Date();
 
   constructor(
     private snackBarService: SnackBarService,
@@ -70,5 +71,17 @@ export class OutputTableComponent implements OnInit {
       console.log('User status updated successfully', res.isChecked);
       this.router.navigate([`/`]);
     });
+  }
+
+  isNearDeadline(paymentDate: Date): boolean {
+    const deadline = new Date(paymentDate);
+    const timeDiff = deadline.getTime() - this.today.getTime();
+    const diff = timeDiff / (1000 * 3600 * 24);
+    console.log(diff);
+    if (diff <= 3 && diff <= 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -12,10 +12,16 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpRequestService } from '../../service/http-service/http-response.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../../service/snackbar/snackbar.service';
+import { DeleteButtonComponent } from '../delete-button/delete-button.component';
 @Component({
   selector: 'app-input-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    DeleteButtonComponent,
+  ],
   templateUrl: './input-form.component.html',
   styleUrl: './input-form.component.scss',
 })

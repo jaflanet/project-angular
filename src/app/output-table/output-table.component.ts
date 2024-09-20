@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { SnackBarService } from '../../service/snackbar/snackbar.service';
 import { HttpRequestService } from '../../service/http-service/http-response.service';
 import { Router } from '@angular/router';
+import { DeleteButtonComponent } from '../delete-button/delete-button.component';
 @Component({
   selector: 'app-output-table',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DeleteButtonComponent],
   templateUrl: './output-table.component.html',
   styleUrl: './output-table.component.scss',
 })

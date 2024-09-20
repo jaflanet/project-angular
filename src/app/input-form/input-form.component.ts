@@ -59,7 +59,7 @@ export class InputFormComponent implements OnInit {
   fetchUserDataById(id: string) {
     this.isLoading = true;
     this.httpRequestService.getUserById(id).subscribe(
-      (res: DataUser) => {
+      (res: any) => {
         this.addUserForm.setValue({
           name: res.name,
           email: res.email,
@@ -86,14 +86,12 @@ export class InputFormComponent implements OnInit {
 
       if (this.isEditMode && this.userId) {
         this.updateUser(this.userId, formData);
-        this.router.navigate([`/`]);
         this.snackBarService.openSnackBar(
           'User is edited successfully',
           'Close'
         );
       } else {
         this.addUser(formData);
-        this.router.navigate([`/`]);
         this.snackBarService.openSnackBar(
           'User is added successfully',
           'Close'
@@ -108,14 +106,14 @@ export class InputFormComponent implements OnInit {
     const payload = userData;
     this.httpRequestService.createUser(payload).subscribe((res: any) => {
       console.log('success create user', res);
-      this.fetchDataUser();
+      this.router.navigate([`/`]);
     });
   }
 
   updateUser(id: string, userData: DataUser) {
     this.httpRequestService.updateUser(id, userData).subscribe((res: any) => {
       console.log('User updated successfully', res);
-      this.fetchDataUser();
+      this.router.navigate([`/`]);
     });
   }
 

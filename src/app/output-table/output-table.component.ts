@@ -63,4 +63,12 @@ export class OutputTableComponent implements OnInit {
   goToCreateForm(id: any) {
     this.router.navigate([`/edit/${id}`]);
   }
+
+  updateUser(id: any, userData: DataUser) {
+    userData.isChecked = userData.isChecked;
+    this.httpRequestService.updateUser(id, userData).subscribe((res: any) => {
+      console.log('User status updated successfully', res.isChecked);
+      this.router.navigate([`/`]);
+    });
+  }
 }

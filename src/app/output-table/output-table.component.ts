@@ -77,7 +77,6 @@ export class OutputTableComponent implements OnInit {
     const deadline = new Date(paymentDate);
     const timeDiff = deadline.getTime() - this.today.getTime();
     const diff = timeDiff / (1000 * 3600 * 24);
-    console.log(diff);
     if (diff <= 3 && diff <= 0) {
       return true;
     } else {

@@ -1,15 +1,15 @@
-import { DataUser } from './app.entity';
+import { DataUser } from "./app.entity";
 
 export const userDataPublic: DataUser = {
-  name: 'jna',
-  age: 23,
-  province:"jakarta",
-  city:'jakbar',
-  zipcode:"13134",
-  paymentDeadline: new Date,
-  username:'rloo',
-  email:'jonathan@gmail.com',
-  basicSalary:'100',
-  isChecked:false,
-  id:'1617'
-};
+        "paymentDeadline": new Date(),
+        "username": "Janessa25",
+        "name": "Raoul",
+        "email": "Laisha.Kutch36@yahoo.com",
+        "basicSalary": "949883087",
+        "city": "Hammesworth",
+        "province": "Mongolia",
+        "zipcode": "TC",
+        "isChecked": false,
+        "age": 93,
+        "id": "38"
+}

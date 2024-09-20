@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DataUser } from '../app.entity';
+import { AuthenticationService } from '../Service/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-button',
@@ -9,12 +10,13 @@ import { DataUser } from '../app.entity';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  @Input() buttonLabel: String = '';
-  @Input() dataForChild!: DataUser;
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router
+  ) {}
 
-  @Output() submitButton = new EventEmitter<String>();
-
-  onClick() {
-    this.submitButton.emit('button label');
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

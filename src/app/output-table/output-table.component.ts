@@ -33,6 +33,7 @@ export class OutputTableComponent implements OnInit {
       (res: any) => {
         this.dataUser = res;
         this.isLoading = false;
+        console.log('fetch user completed');
       },
       (err) => {
         this.isLoading = false;

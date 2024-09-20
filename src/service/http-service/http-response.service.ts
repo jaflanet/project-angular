@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataUser } from '../../app/app.entity';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,26 +11,26 @@ export class HttpRequestService {
 
   constructor(private http: HttpClient) {}
 
-  getData(): Observable<DataUser[]> {
-    return this.http.get<DataUser[]>(this.apiUrl);
+  getData() {
+    return this.http.get(this.apiUrl);
   }
 
-  getUserById(id: string): Observable<DataUser> {
+  getUserById(id: string) {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<DataUser>(url);
+    return this.http.get(url);
   }
 
-  createUser(payload: DataUser): Observable<DataUser> {
-    return this.http.post<DataUser>(this.apiUrl, payload);
+  createUser(payload: DataUser) {
+    return this.http.post(this.apiUrl, payload);
   }
 
-  updateUser(id: string, payload: DataUser): Observable<DataUser> {
+  updateUser(id: string, payload: DataUser) {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.put<DataUser>(url, payload);
+    return this.http.put(url, payload);
   }
 
-  deleteUser(id: string): Observable<void> {
+  deleteUser(id: string) {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<void>(url);
+    return this.http.delete(url);
   }
 }

@@ -21,7 +21,6 @@
       *ngFor="let user of dataUser"
       [ngClass]="{
         strikethrough: user.isChecked,
-       
       }"
     >
       <td (click)="goToCreateForm(user.id)">{{ user.id }}</td>
@@ -47,12 +46,16 @@
         />
       </td>
     </tr>
+  </tbody>
 
-    <tr *ngIf="isLoading" class="fullrow">
+  <tbody *ngIf="isLoading" class="fullrow">
+    <tr>
       <td colspan="6" class="no-data">loading</td>
     </tr>
+  </tbody>
 
-    <tr *ngIf="dataUser.length === 0 && !isLoading" class="fullrow">
+  <tbody *ngIf="dataUser.length === 0 && !isLoading" class="fullrow">
+    <tr>
       <td colspan="6" class="no-data">No data available</td>
     </tr>
   </tbody>
